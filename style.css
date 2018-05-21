@@ -49,31 +49,44 @@ table {
 
 /* Custom CSS */
 
+* {
+    font-family: VT323, monospace;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
 .border {
     border: 1px solid grey;
 }
 
 .main-flex-container{
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    align-items: start;
+    flex-direction: row;
 }
 
 .canvas-area {
     width: 50%;
     overflow: auto;
+    margin: 2.5%;
 }
 
 .palette-area {
-    display: flex;
-    flex-wrap: wrap;
     width: 50%;
-    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2.5%;
 }
 
 .color-option {
     height: 25px;
     width: 25px;
+    display: inline-block;
     margin: 5px;
     border-radius: 25px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
@@ -83,10 +96,29 @@ table {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-.red {
-    background-color: red;
+.current-color {
+    display: inline-block;
+    margin: 10px;
 }
 
-.blue {
-    background-color: blue;
+.current-color-value{
+    width: 100%;
+}
+
+.current-color-value p {
+    margin: 10px 0;
+}
+
+.current-color-value > p > span:first-of-type {
+    background-color: snow;
+    border-radius: 3px;
+    padding: 10px;
+    box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+.current-color-value > p > span:last-of-type{
+    display: inline-block;
+}
+
+.default-colors {
+    margin: 10px;
 }

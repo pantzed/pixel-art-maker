@@ -1,16 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     let brushColor = 'white';
-    let defaultPaletteColors = ['silver', 'gray', 'black', 'red', 'maroon', 'yellow', 'olive', 'lime', 'green', 'aqua', 'teal', 'blue', 'navy', 'fuchsia', 'purple'];
+    let defaultPaletteColors = ['white', 'silver', 'gray', 'black', 'red', 'maroon', 'yellow', 'olive', 'lime', 'green', 'aqua', 'teal', 'blue', 'navy', 'fuchsia', 'purple'];
     let customPaletteColors = [];
 
     document.body.querySelector('section[id="palette-area"]').addEventListener('click', function(event){
         brushColor = getComputedStyle(event.target).backgroundColor;
-        console.log(brushColor);
+        let currentBrushColor = brushColor;
+        document.getElementById('current-color-value').innerHTML = currentBrushColor;
     });
 
     document.body.querySelector('section[id="canvas-area"]').addEventListener('click', function(event){
         event.target.style.backgroundColor = brushColor;
+        event.target.style.borderColor = brushColor;
     });
 
     const addPixels = function(percent) {
@@ -28,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let colorOption = document.createElement('div');
             colorOption.classList.add('color-option');
             colorOption.style.backgroundColor = color;
-            paletteArea.appendChild(colorOption);
+            paletteArea.querySelector('section[id="default-colors"]').appendChild(colorOption);
         });
     }
 
-    addPixels(5);
+    addPixels(2.5);
     buildColorPalette();
 });
