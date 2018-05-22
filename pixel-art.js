@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i=0; i<loops; i++){
             let square = document.createElement('div');
             square.style.cssText = `box-sizing: border-box; width: ${percent}%; float: left; padding-bottom: ${percent}%; border: 1px solid gray;`;
+            square.style.backgroundColor = 'rgb(255, 255, 255)';
             document.querySelector('section[id="canvas-area"]').appendChild(square);
         }
     }
