@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#color-picker').addEventListener('change', addCustomColorToBrush);
 
-    const addPixels = function(percent) {
+    function addPixels(percent) {
         let loops = (100/percent)*(80/percent);
         for (let i=0; i<loops; i++){
             let square = document.createElement('div');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    const buildColorPalette = function() {
+    function buildColorPalette() {
         let paletteArea = document.querySelector('section[id="palette-area"]');
         defaultPaletteColors.forEach(function(color){
             let colorOption = document.createElement('div');
