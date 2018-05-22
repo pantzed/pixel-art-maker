@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    let brushColor = 'silver';
+    let brushColor = 'white';
     let defaultPaletteColors = ['white', 'silver', 'gray', 'black', 'red', 'maroon', 'yellow', 'olive', 'lime', 'green', 'aqua', 'teal', 'blue', 'navy', 'fuchsia', 'purple'];
     let customPaletteColors = [];
 
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('section[id="canvas-area"]').appendChild(square);
         }
     }
-    addPixels(2.5);
+    addPixels(5);
 
     function buildColorPalette() {
         let paletteArea = document.querySelector('section[id="palette-area"]');
@@ -67,5 +67,53 @@ document.addEventListener('DOMContentLoaded', function() {
     function colorCell(event){
         event.target.style.backgroundColor = brushColor;
         event.target.style.borderColor = brushColor;
+    }
+
+    document.getElementById('canvas-area').addEventListener('mouseover', getCellColor);
+    document.getElementById('canvas-area').addEventListener('dblclick', startFloodFill);
+
+    let startingColor;
+    
+    function getCellColor() {
+        startingColor = getComputedStyle(event.target).backgroundColor;
+        console.log(startingColor);
+    }
+    
+
+    function startFloodFill() {
+        let startingIndex = (Array.from(event.currentTarget.childNodes).indexOf(event.target));
+        floodFill(startingIndex);
+        return;
+        }
+
+    function floodFill(currentIndex){
+        let north = event.currentTarget.childNodes[currentIndex - 20];
+        let east = event.currentTarget.childNodes[currentIndex + 1];
+        let south = event.currentTarget.childNodes[currentIndex + 20];
+        let west = event.currentTarget.childNodes[currentIndex - 1];
+        console.log(north, east, south, west);
+        if (north.style.backgroundColor === startingColor) {
+            north.style.backgroundColor = brushColor;
+            north.style.borderColor = brushColor
+            floodFill(currentIndex - 20);
+        }
+        if (east.style.backgroundColor === startingColor){
+            east.style.backgroundColor = brushColor;
+            east.style.borderColor = brushColor
+            floodFill(currentIndex + 1);
+        }
+        if (south.style.backgroundColor === startingColor){
+            south.style.backgroundColor = brushColor;
+            south.style.borderColor = brushColor
+            floodFill(currentIndex + 20)
+        }
+        if (west.style.backgroundColor === startingColor){
+            west.style.backgroundColor = brushColor;
+            west.style.borderColor = brushColor
+            floodFill(currentIndex - 1);
+        }
+        else {
+            return ;
+        }    
     }
 });
