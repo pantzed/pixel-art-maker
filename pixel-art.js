@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    let brushColor = 'white';
+    let brushColor = 'silver';
     let defaultPaletteColors = ['white', 'silver', 'gray', 'black', 'red', 'maroon', 'yellow', 'olive', 'lime', 'green', 'aqua', 'teal', 'blue', 'navy', 'fuchsia', 'purple'];
     let customPaletteColors = [];
 
@@ -8,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         brushColor = getComputedStyle(event.target).backgroundColor;
         let currentBrushColor = brushColor;
         document.getElementById('current-color-value').innerHTML = currentBrushColor;
-    });
-
-    document.body.querySelector('section[id="canvas-area"]').addEventListener('click', function(event){
-        event.target.style.backgroundColor = brushColor;
-        event.target.style.borderColor = brushColor;
     });
 
     function addCustomColorToBrush() {
@@ -34,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('section[id="canvas-area"]').appendChild(square);
         }
     }
+    addPixels(2.5);
 
     function buildColorPalette() {
         let paletteArea = document.querySelector('section[id="palette-area"]');
@@ -44,7 +40,32 @@ document.addEventListener('DOMContentLoaded', function() {
             paletteArea.querySelector('section[id="default-colors"]').appendChild(colorOption);
         });
     }
-
-    addPixels(2.5);
     buildColorPalette();
+
+    document.querySelector('#canvas-area').addEventListener('mousedown', startBrushStroke);
+
+    function startBrushStroke() {
+        console.log('start');
+        event.preventDefault();
+        colorCell(event);
+        document.querySelector('#canvas-area').addEventListener('mouseover', drawBrushStroke);
+        document.querySelector('#canvas-area').addEventListener('mouseup', releaseBrushStroke);
+    }
+
+    function drawBrushStroke(){
+        console.log("draw");
+        event.preventDefault();
+        colorCell(event);
+    }
+
+    function releaseBrushStroke(){
+        console.log("released");
+        event.preventDefault();
+        document.querySelector('#canvas-area').removeEventListener('mouseover', drawBrushStroke);
+    }
+
+    function colorCell(event){
+        event.target.style.backgroundColor = brushColor;
+        event.target.style.borderColor = brushColor;
+    }
 });
