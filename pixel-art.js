@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         colorCell(event);
         document.querySelector('#canvas-area').addEventListener('mouseover', drawBrushStroke);
-        document.querySelector('#canvas-area').addEventListener('mouseup', releaseBrushStroke);
+        document.querySelector('html').addEventListener('mouseup', releaseBrushStroke);
     }
 
     function drawBrushStroke(){
