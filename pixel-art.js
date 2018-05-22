@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
         event.target.style.borderColor = brushColor;
     });
 
+    function addCustomColorToBrush() {
+        brushColor = event.target.value;
+        updateCurrentColorDisplay();
+    }
+
+    function updateCurrentColorDisplay() {
+        document.getElementById('current-color-value').innerHTML = brushColor;
+    }
+
+    document.querySelector('#color-picker').addEventListener('change', addCustomColorToBrush);
+
     const addPixels = function(percent) {
         let loops = (100/percent)*(80/percent);
         for (let i=0; i<loops; i++){
