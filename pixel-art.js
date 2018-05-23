@@ -83,8 +83,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startFloodFill() {
         let startingIndex = (Array.from(event.currentTarget.childNodes).indexOf(event.target));
-        let length = (Array.from(event.currentTarget.childNodes)).length;
+        if (startingColor === brushColor){
+            console.log(`Already full with ${brushColor}`);
+            return;
+        }
         floodFill(startingIndex);
+        console.log("floodfill complete");
         return;
         }
 

@@ -70,9 +70,11 @@ h2 {
 }
 
 .canvas-area {
+    border: 1px solid gray;
     width: 50%;
     overflow: auto;
     margin: 2.5%;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .palette-area {
