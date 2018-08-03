@@ -124,3 +124,9 @@ h2 {
 .default-colors {
     margin: 10px;
 }
+
+.pixel-font {
+    margin-left: 2.5%;
+    margin-top: 1%;
+    font-family: VT323, monospace; 
+}
